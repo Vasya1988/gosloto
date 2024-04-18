@@ -1,23 +1,41 @@
-import { createContext, useContext, useState, ReactNode, Dispatch, SetStateAction } from "react";
 
-interface GlobalProps {
+import React, { createContext, useState, ReactNode } from "react";
+
+interface ContextType {
+    
     firstField: string[],
-    setFirstField: Dispatch<SetStateAction<string[]>>
+    setFirstField: React.Dispatch<React.SetStateAction<string[]>>,
+    secondField: string[],
+    setSecondField: React.Dispatch<React.SetStateAction<string[]>>,
+    isTicketWon: boolean,
+    setTicket: React.Dispatch<React.SetStateAction<boolean>>
 }
-const GlobalContext = createContext<GlobalProps>(
-    {
-        firstField: [],
-        setFirstField: () => {}
-    }
-)
+const MyContext = createContext<ContextType>({
 
-const GlobalContextProvider = ({children}: {children: ReactNode}) => {
-    const [firstField, setFirstField] = useState<string[]>([])
+    firstField: [],
+    setFirstField: () => { },
+    secondField: [],
+    setSecondField: () => {},
+    isTicketWon: false,
+    setTicket: () => {}
+});
+
+const MyContextProvider = ({ children }: {children: ReactNode}) => {
+    const [firstField, setFirstField] = useState<string[]>([]);
+    const [secondField, setSecondField] = useState<string[]>([]);
+    const [isTicketWon, setTicket] = useState(false)
+
     return (
-        <GlobalContext.Provider value={{firstField, setFirstField}} >{ children }</GlobalContext.Provider>
+        <MyContext.Provider 
+            value={
+                {
+                    firstField, setFirstField, secondField, setSecondField, isTicketWon, setTicket
+                }
+            }
+        >
+            { children }
+        </MyContext.Provider>
     )
 }
 
-const useGlobalContext = () => useContext(GlobalContext)
-
-export { GlobalContextProvider, useGlobalContext }
+export { MyContext, MyContextProvider }

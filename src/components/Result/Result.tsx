@@ -1,11 +1,10 @@
-import { useEffect } from "react"
-import { useGlobalContext } from "../../context/Context"
+import { useContext, useEffect } from "react"
+import { MyContext } from "../../Context/Context"
+
 
 const Result = () => {
-    const { firstField } = useGlobalContext()
-    useEffect(() => {
-        console.log('first --> ', firstField)
-    }, [firstField])
+    const {firstField, secondField, isTicketWon} = useContext(MyContext)
+    console.log(firstField, secondField, isTicketWon)
     return (
         <div>
             done

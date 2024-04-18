@@ -2,13 +2,10 @@ import { Link, Routes, Route } from 'react-router-dom'
 import './App.sass';
 import { ButtonResult } from './components/ui/buttons/ButtonResult/ButtonResult';
 import FieldCard from './components/FieldCard/FieldCard';
-import { useEffect, useState } from 'react';
-import { useGlobalContext } from './context/Context';
+import { useState } from 'react';
 import { Result } from './components/Result/Result';
 
 function App() {
-
-  const {firstField} = useGlobalContext()
 
   const [fields, setFields] = useState(
     {
@@ -17,9 +14,6 @@ function App() {
     }
   )
 
-  useEffect(() => {
-    console.log('first --> ', firstField)
-  }, [firstField])
   return (
     <div className={'LotoFrame'} >
       <Routes>

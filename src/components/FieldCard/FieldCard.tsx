@@ -30,14 +30,14 @@ const FieldCard = (props: FieldCardsProps) => {
                 <RandomNumber />
             </div>
             <FieldTitle fieldNumber={1} amount={8} />
-            <div className={Styles.Fields}>
+            <div data-field='first' className={Styles.Fields}>
                 {
                   firstCells
                 }
             </div>
 
             <FieldTitle fieldNumber={2} amount={1} />
-            <div className={Styles.Fields}>
+            <div data-field='second' className={Styles.Fields}>
                 {
                     secondCells
                 }
